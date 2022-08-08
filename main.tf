@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file(var.credentials_file)
+  credentials = fileexists(var.credentials_file) ? file(var.credentials_file) : var.credentials_file_content
 
   project = var.project
   region  = var.region
